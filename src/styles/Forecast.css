@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-800;
+}
+
+.cardSet {
+  @apply flex justify-center items-center self-stretch;
+
+  @media screen and (max-width: 1000px) {
+    @apply flex-col;
+  }
+}
+
+.infoCard {
+  @apply flex flex-col items-center w-80 p-4 m-6 border-0 rounded-md bg-gradient-to-r from-emerald-900 to-sky-900;
+  font-family: Microsoft JhengHei;
+  
+  p {
+    @apply text-xl text-white p-2
+  }
+
+  svg {
+    @apply fill-white p-1;
+  }
+}
+
+.area-1 {
+  @apply self-stretch;
+  @apply flex flex-row items-center justify-stretch;
+
+  > p {
+    @apply ml-auto text-3xl font-bold;
+  }
+
+  > svg {
+    @apply w-14 h-14 flex-none;  
+  }
+}
+
+.area-2 {
+  @apply self-stretch;
+  @apply flex flex-row items-center justify-center;
+
+  > p {
+    @apply px-0;
+  }
+
+  > svg {
+    @apply w-8 h-8
+  }
+}
+
+.credit svg {
+  @apply w-6 h-6 fill-white hover:w-8 hover:h-8 duration-100;
+}
