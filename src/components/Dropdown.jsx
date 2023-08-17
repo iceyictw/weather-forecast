@@ -5,28 +5,28 @@ function Dropdown({items, option, setOption}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center h-[200px]">
+    <div className="dropdown">
       <button
       onClick={() => setIsOpen(prev => !prev)}
       className="w-[340px] p-3 m-0 
         flex items-center justify-between 
         font-bold text-lg rounded-lg
-        bg-blue-400 hover:bg-blue-300 border-4 border-transparent active:border-white duration-100 active:text-white"
+        bg-white border-4 border-transparent hover:border-gray-500 duration-100"
       >
         {option}
       </button>
 
       {isOpen && (
-        <div className='absolute top-36 flex flex-col h-[300px] w-[340px] overflow-y-scroll'>
-          {items.map(item => (
+        <div className='dropdownList'>
+          {Object.entries(items).map(([key, value]) => (
             <div
-            key={item}
-            className='w-full h-[90px] bg-blue-400 hover:bg-blue-300 hover:border-l-4 border-white select-none duration-100'
+            key={key}
+            className='w-full h-[90px] bg-gray-200 hover:bg-orange-100 hover:border-l-4 border-zinc-900 select-none duration-100'
             onClick={() => {
               setIsOpen(false);
-              setOption(item);
+              setOption(key);
             }}>
-              <p className='m-4 font-bold'>{item}</p>
+              <p className='m-4 font-bold'>{value}</p>
             </div>
           ))}
         </div>

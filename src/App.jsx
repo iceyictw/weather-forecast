@@ -1,40 +1,18 @@
-import { useEffect, useState } from 'react'
-import Forecast from './Forecast.jsx'
-import Dropdown from './Dropdown.jsx'
+import { useEffect, useState, Fragment } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Forecast from './components/Forecast.jsx'
+import Dropdown from './components/Dropdown.jsx'
 import { ReactComponent as TwitterIcon } from './icons/twitter.svg'
 import { ReactComponent as GithubIcon } from './icons/github.svg'
-
-const regions = [
-  '嘉義縣',
-  '嘉義市',
-  '新竹縣',
-  '新竹市',
-  '新北市',
-  '臺北市',
-  '臺南市',
-  '宜蘭縣',
-  '苗栗縣',
-  '雲林縣',
-  '花蓮縣',
-  '臺中市',
-  '臺東縣',
-  '桃園市',
-  '南投縣',
-  '高雄市',
-  '金門縣',
-  '屏東縣',
-  '基隆市',
-  '澎湖縣',
-  '彰化縣',
-  '連江縣',
-]
+import regionData from './regions.json'
 
 function App() {
-  const [region, setRegion] = useState('臺北市');
+  const [option, setOption] = useState('fullRegion');
+  const regions = regionData[option];
   const [data, setData] = useState();
 
   function handleChange(e) {
-    setRegion(e.target.value);
+    setRegions(e.target.value);
   }
 
   useEffect(() => {
@@ -53,14 +31,29 @@ function App() {
     return () => {
       flag = false;
     }
-  }, [region])
+  }, [option])
 
   return (
     <>
-    <Dropdown items={regions} option={region} setOption={setRegion} />
-    {data ? <Forecast data={data.records.location.find(element => element.locationName === region)}/> : null}
-    <div className='credit flex flex-row justify-center items-center h-36 text-[16px]'>
-      <p className='text-white mx-1'>Made by Icelin</p>
+    <div className='flex flex-col items-center'>
+  
+      <div className='banner'>
+        <p className='text-5xl text-black my-10 font-bold'>今明日天氣預報</p>
+        <Dropdown items={regionData.options} option={regionData.options[option]} setOption={setOption} />
+      </div>
+
+      <AnimatePresence mode='wait'>
+      <Fragment key={option}>
+        {data && regions ? regions.map((region, i) => (
+          <Forecast key={region} data={data.records.location.find(element => element.locationName === region)} index={i} />
+        )) : null}
+      </Fragment>
+      </AnimatePresence>
+  
+    </div>
+  
+    <div className='credit flex flex-row justify-center items-center h-20 text-[16px]'>
+      <p className='text-black mx-1'>Made by Icelin</p>
       <a href="https://twitter.com/icelin1717" className='mx-1'><TwitterIcon /></a>
       <a href="https://github.com/Icelin1717" className='mx-1'><GithubIcon /></a>
     </div>
