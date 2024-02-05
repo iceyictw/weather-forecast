@@ -17,8 +17,8 @@ function App() {
 
   useEffect(() => {
     let flag = true;
-    fetch('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?' + new URLSearchParams({
-      Authorization: 'CWB-A514BCEC-F669-445D-A252-B1D485ADE0AC',
+    fetch('https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?' + new URLSearchParams({
+      Authorization: 'CWA-9AB07683-0987-4315-B12C-2C08BB1757C3',
       sort: 'time',
       format: 'JSON'
     }))
