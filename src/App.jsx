@@ -53,9 +53,8 @@ function App() {
     </div>
   
     <div className='credit flex flex-row justify-center items-center h-20 text-[16px]'>
-      <p className='text-black mx-1'>Made by Icelin</p>
-      <a href="https://twitter.com/icelin1717" className='mx-1'><TwitterIcon /></a>
-      <a href="https://github.com/Icelin1717" className='mx-1'><GithubIcon /></a>
+      <p className='text-black mx-1'>Made by iceyic</p>
+      <a href="https://github.com/iceyictw" className='mx-1'><GithubIcon /></a>
     </div>
     </>
   )
